@@ -1,14 +1,10 @@
-const CurrentEncounters = require('~/knex/models/CurrentEncounters');
 const User = require('~/knex/models/User');
-const Caught = require('~/knex/models/Caught');
-import Pokestops from '~/knex/models/Pokestops';
-import SpunPokestops from '~/knex/models/SpunPokestops';
 import '~/lib/Database';
+import EncounterCommands from '~/lib/EncounterCommands';
 import Errors from '~/lib/Errors';
 import CustomError from '~/lib/errors/CustomError';
 import InventoryCommands from '~/lib/InventoryCommands';
 import PokemonCommands from '~/lib/PokemonCommands';
-import SpriteList from '~/lib/SpriteList';
 import UserCommands from '~/lib/UserCommands';
 import Utils from '~/lib/Utils';
 
@@ -26,52 +22,20 @@ export default async function handler(req, res) {
     }
 
     let user = await User.query().select('location', 'secretId')
-    .where('userId', userId);
+        .where('userId', userId).first();
 
-    let secretId = user[0].secretId;
-    let location = user[0].location;
+    let secretId = user.secretId;
+    let location = user.location;
+
+    const sprites = await EncounterCommands.getSprites(userId, location, secretId);
     
-    let spriteList = new SpriteList();
-
-    //get pokemon
-    let pokemon = await CurrentEncounters.query().select('*')
-    .whereNotIn(
-        'encounterId', 
-        Caught.query().select('encounterId')
-        .where('userId', userId)
-    )
-    .where('cell', location);
-
-    //get pokestops
-    let pokestops = await Pokestops.query().select('*')
-    .whereNotIn(
-        'id',
-        SpunPokestops.query().select('pokestopId')
-        .where('userId', userId)
-    )
-    .where('cell', location);
-
-    //save this
-
-    //add shiny markers
-    if(pokemon.length) {
-        pokemon.forEach(function(pokemon) {
-            if(pokemon.shinyId == secretId) {
-                pokemon.shiny = true;
-            }
-        });
-    }
-
-    spriteList.addSprites(pokemon, 'pokemon');
-    spriteList.addSprites(pokestops, 'pokestop');
-    
-    if(spriteList.length) {
+    if(sprites.length) {
         await User.query().update({
-            saved: JSON.stringify(spriteList),
             nextCommand: 'encounter/StartEncounter',
         })
         .where('userId', userId);
-        res.json(JSON.stringify(spriteList));
+
+        res.json({ sprites: sprites });
     }
     else {
         let err = new CustomError('CELL_EMPTY');

@@ -3,6 +3,7 @@ const PlayerEncounters = require('~/knex/models/PlayerEncounters');
 import Caught from '~/knex/models/Caught';
 import CurrentEncounters from '~/knex/models/CurrentEncounters';
 import '~/lib/Database';
+import EncounterCommands from '~/lib/EncounterCommands';
 import Errors from '~/lib/Errors';
 import CustomError from '~/lib/errors/CustomError';
 import InventoryCommands from '~/lib/InventoryCommands';
@@ -26,7 +27,7 @@ export default async function handler(req, res) {
             throw new CustomError('NON_NUMERIC_CHOICE');
         }
 
-        user = await User.query().select('level', 'itemstorage', 'secretId')
+        user = await User.query().select('level', 'itemstorage', 'secretId', 'location')
             .withGraphFetched('medals')
             .where('userId', userId).first();
     }
@@ -37,8 +38,9 @@ export default async function handler(req, res) {
 
     //correct parameters are given
 
+    const sprites = await EncounterCommands.getSprites(userId, user.location, user.secretId);
+
     //make sure user is in an encounter
-    const { sprites } = (await UserCommands.getSaved(userId));
     if(!sprites) {
         let err = new CustomError('NO_ENCOUNTER');
         res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
@@ -128,7 +130,6 @@ export default async function handler(req, res) {
     ]);
 
     const circleColor = insertedEncounter.catchChance;
-    console.log(circleColor)
 
     res.json({pokemon: insertedEncounter.infoForUser, pokeBalls: pokeBalls,
         position: 1, catchChance: circleColor, type: 'pokemon'});
