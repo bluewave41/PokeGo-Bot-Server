@@ -17,7 +17,9 @@ export default async function handler(req, res) {
         return res.end();
     }
 
-    await UserCommands.update(userId, 'nextCommand', null);
+    await UserCommands.update(userId, [
+        { rowName: 'nextCommand', value: null}
+    ]);
     
     res.end();
 }
@@ -31,6 +33,7 @@ function isQuittable(nextCommand) {
         case 'mail/OpenMail':
         case 'mail/ClaimRewards':
         case 'starter/SelectStarterPokemon':
+        case 'powerup/PowerupResponse':
             return true;
         default:
             throw new CustomError('NON_QUITTABLE');
