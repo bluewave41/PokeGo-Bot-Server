@@ -18,7 +18,7 @@ exports.up = function(knex) {
 	  table.smallint('chargeMove').notNullable();
 	
 	  table.integer('shinyId').notNullable();
-	  table.boolean('gender').notNullable();
+	  table.boolean('gender');
  })
 };
 
