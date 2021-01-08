@@ -6,6 +6,7 @@ import Mail from '~/knex/models/Mail';
 import MailCommands from '~/lib/MailCommands';
 import UserCommands from '~/lib/UserCommands';
 import PlayerMail from '~/knex/models/PlayerMail';
+import CustomError from '~/lib/errors/CustomError';
 
 export default async function handler(req, res) {
     //handle differently for website
