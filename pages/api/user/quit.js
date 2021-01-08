@@ -5,6 +5,8 @@ import UserCommands from '~/lib/UserCommands';
 import CustomError from '~/lib/errors/CustomError';
 import Transfers from '~/knex/models/Transfers';
 import Powerups from '~/knex/models/Powerups';
+import PlayerEncounters from '~/knex/models/PlayerEncounters';
+import PlayerMail from '~/knex/models/PlayerMail';
 
 export default async function handler(req, res) {
     let userId, nextCommand;
@@ -31,6 +33,11 @@ export default async function handler(req, res) {
         case 'powerup/PowerupResponse':
             await Powerups.query().delete()
                 .where('userId', userId);
+            break;
+        case 'mail/ClaimRewards':
+            await PlayerMail.query().delete()
+                .where('userId', userId);
+            break;
     }
 
     await UserCommands.update(userId, [
