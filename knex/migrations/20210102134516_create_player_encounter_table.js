@@ -26,7 +26,7 @@ exports.up = function(knex) {
 	  table.smallint('chargeMove').notNullable();
 	
 	  table.boolean('shiny').notNullable();
-	  table.boolean('gender').notNullable();
+	  table.boolean('gender');
 	  
 	  table.primary(['userId']);
   })
