@@ -55,7 +55,7 @@ export default async function handler(req, res) {
         }
     }
 
-    let pokemon = await query;
+    let pokemon = await query.debug();
     count = await count;
     res.json({list: pokemon, totalpokemon: count[0].pokemonCount});
     res.end();

@@ -100,7 +100,7 @@ class Pokemon extends Model {
             maxHP: this.hp,
             fastMove: this.fastMove,
             chargeMove: this.chargeMove,
-            totalIV: this.totalIV,
+            totaliv: this.totalIV,
         }
     }
     get catchCandy() {
