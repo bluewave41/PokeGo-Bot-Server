@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         streak = await canWeDoDaily(lastDaily, streak);
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 

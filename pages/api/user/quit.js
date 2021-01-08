@@ -3,6 +3,8 @@ import Errors from '~/lib/Errors';
 import '~/lib/Database';
 import UserCommands from '~/lib/UserCommands';
 import CustomError from '~/lib/errors/CustomError';
+import Transfers from '~/knex/models/Transfers';
+import Powerups from '~/knex/models/Powerups';
 
 export default async function handler(req, res) {
     let userId, nextCommand;
@@ -13,8 +15,22 @@ export default async function handler(req, res) {
         isQuittable(nextCommand);
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
+    }
+
+    switch(nextCommand) {
+        case 'encounter/SelectSquare':
+            await PlayerEncounters.query().delete()
+                .where('userId', userId);
+            break;
+        case 'transfer/ConfirmTransfer':
+            await Transfers.query().delete()
+                .where('userId', userId);
+            break;
+        case 'powerup/PowerupResponse':
+            await Powerups.query().delete()
+                .where('userId', userId);
     }
 
     await UserCommands.update(userId, [
@@ -29,7 +45,7 @@ function isQuittable(nextCommand) {
         case 'encounter/SelectSquare':
         case 'travel/SelectLocation':
         case 'encounter/StartEncounter':
-        case 'transfer/confirmTransfer':
+        case 'transfer/ConfirmTransfer':
         case 'mail/OpenMail':
         case 'mail/ClaimRewards':
         case 'starter/SelectStarterPokemon':

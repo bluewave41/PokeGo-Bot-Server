@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         userId = req.body.userId;
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -24,6 +24,6 @@ export default async function handler(req, res) {
     
     res.json({pokemonCount: pokemonCount, itemCount: itemCount, currency: user.currency, xp: user.xp,
          level: user.level, requiredXP: requiredXP, totalxp: user.totalxp, stardust: user.stardust, storage: user.storage,
-        itemstorage: user.itemstorage});
+        itemstorage: user.itemstorage, location: user.location.toUpperCase()});
     res.end();
 }

@@ -24,7 +24,7 @@ export default async function handler(req, res) {
         //TODO: check pokemon level, max is 40
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -59,7 +59,7 @@ export default async function handler(req, res) {
     }
     else {
         const err = new CustomError('INSUFFICIENT_CANDY', PowerupTable[powerupIndex+1].candy);
-        res.json({ error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({ error: Errors.getError(err, req.headers.errors)});
     }
     res.end();
 }

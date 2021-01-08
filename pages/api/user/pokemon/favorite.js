@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         pokemon = await PokemonCommands.getStrictPokemon(userId, pokemonId, 'NO_POKEMON');
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 

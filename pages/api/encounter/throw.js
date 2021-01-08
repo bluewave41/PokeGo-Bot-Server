@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         square = Utils.findElement(['L2', 'L3', 'R1', 'R2', 'S1', 'S2', 'S3'], req.body.square, null, 'INVALID_SQUARE');
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.repace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
         .where('userId', userId).first();
 
     if(!encounter) {
-        res.json({error: Errors.getError('NO_ENCOUNTER', req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
     const { amount: pokeballCount } = await InventoryCommands.getItemCount(userId, encounter.activePokeball);
 
     if(pokeballCount <= 0) {
-        res.json({error: Errors.getError('NO_POKEBALL_TYPE', req.headers.errors)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -67,12 +67,13 @@ export default async function handler(req, res) {
             ]);
 
             //add pokemon
-            await PokemonCommands.catchPokemon(userId, encounter.pokemon, encounter.candyEarned);
+            const pokemon = await PokemonCommands.catchPokemon(userId, encounter.pokemon, encounter.candyEarned);
             
             reply.flag = 'caught';
             reply.xpGained = xpGained;
             reply.catchDust = encounter.pokemon.catchDust;
             reply.catchCandy = encounter.candyEarned;
+            reply.pokemonId = pokemon.pokemonId;
             reply.position = -1;
         }
         else {

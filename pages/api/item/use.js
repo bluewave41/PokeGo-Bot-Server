@@ -79,7 +79,7 @@ export default async function handler(req, res) {
         }
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -89,7 +89,6 @@ export default async function handler(req, res) {
 }
 
 async function canUseItem(item, amount, nextCommand, encounter) {
-    console.log(item)
     //are we in an encounter?
     if(nextCommand != 'encounter/SelectSquare') {
         throw new CustomError("CANT_USE_ITEM");

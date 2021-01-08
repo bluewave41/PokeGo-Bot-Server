@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         location = Utils.findElement(Coordinates.all, req.body.location, null, 'INVALID_TRAVEL_LOCATION');
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 

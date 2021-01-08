@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         await canAccess(userId);
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
     }
     else {
         let err = new CustomError('CELL_EMPTY');
-        res.json({error: Errors.getError(err.message, req.headers.errors)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
     }
 
     res.end();

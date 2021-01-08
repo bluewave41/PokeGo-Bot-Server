@@ -15,12 +15,11 @@ export default async function handler(req, res) {
         }
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
     const pokedex = await PokedexCommands.getPage(userId, page);
-    console.log(pokedex);
 
     let start = (page-1)*25+1;
 
@@ -28,7 +27,7 @@ export default async function handler(req, res) {
     const maxPage = Math.ceil(numberOfPokemon/25);
 
     if(page > maxPage) {
-        res.json({error: Errors.getError('PAGE_TOO_HIGH', req.headers.errors, maxPage)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 

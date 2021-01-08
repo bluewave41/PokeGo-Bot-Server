@@ -32,7 +32,7 @@ export default async function handler(req, res) {
             .where('userId', userId).first();
     }
     catch(err) {
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -43,14 +43,14 @@ export default async function handler(req, res) {
     //make sure user is in an encounter
     if(!sprites) {
         let err = new CustomError('NO_ENCOUNTER');
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
     //make sure the number is in range of the list
     if(position > sprites.length) {
         const err = new CustomError('INVALID_RANGE_CHOICE', sprites.length);
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
             res.send({items: receivedItems, type: 'pokestop'});
         }
         catch(err) {
-            res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+            res.json({error: Errors.getError(err, req.headers.errors)});
         }
         finally {
             await User.query().update({
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
     pokeBalls = await InventoryCommands.getPokeballs(userId);
     if(!pokeBalls.length) {
         const err = new CustomError('INSUFFICIENT_POKEBALLS');
-        res.json({ error: Errors.getError(err.message, req.headers.errors, err.replace) });
+        res.json({ error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -114,7 +114,8 @@ export default async function handler(req, res) {
     pokemon.activePokeball = pokeBalls[0].itemId;
     pokemon.medalMultiplier = calculateMedalMultiplier(pokemon, user.medals);
     pokemon.shiny = pokemon.shinyId == user.secretId;
-    pokemon.cp = pokemon.calculateCP();
+    pokemon.cp = pokemon.calculateNewCP(pokemon.level);
+    pokemon.hp = pokemon.calculateHP(pokemon.level);
 
     delete pokemon['shinyId'];
 

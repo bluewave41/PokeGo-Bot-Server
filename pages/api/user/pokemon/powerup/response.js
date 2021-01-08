@@ -17,8 +17,7 @@ export default async function handler(req, res) {
         response = req.body.response;
     }
     catch(err) {
-        console.log(err);
-        res.json({error: Errors.getError(err.message, req.headers.errors, err.replace)});
+        res.json({error: Errors.getError(err, req.headers.errors)});
         return res.end();
     }
 
@@ -34,7 +33,7 @@ export default async function handler(req, res) {
         if(response > powerup.maximum_times) { //user chose a level higher than they can do
             //TODO: implement player level limit
             err = new CustomError('LEVEL_TOO_HIGH', powerup.maximum_times);
-            res.json({ error: Errors.getError(err.message, req.headers.errors, err.replace )});
+            res.json({ error: Errors.getError(err, req.headers.errors)});
             return res.end();
         }
         const currentPowerupRow = PowerupTable.findIndex(el => el.level == pokemon.level);
@@ -59,7 +58,6 @@ export default async function handler(req, res) {
         //edit pokemon
         let powerupRow = PowerupTable.findIndex(el => el.level == pokemon.level);
         powerupRow += powerup.times;
-        console.log(powerupRow);
         powerupRow = PowerupTable[powerupRow];
 
         const maxHP = pokemon.calculateHP(powerupRow.level); //new maxHP
@@ -92,6 +90,6 @@ export default async function handler(req, res) {
     }
     else {
         err = new CustomError('INVALID_RESPONSE');
-        res.json({ error: Errors.getError(err.message, req.headers.errors, err.replace )});
+        res.json({ error: Errors.getError(err, req.headers.errors)});
     }
 }
