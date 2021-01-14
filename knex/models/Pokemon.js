@@ -8,11 +8,19 @@ class Pokemon extends Model {
 		return 'pokemon';
     }
     static get virtualAttributes() {
-        return ['url', 'emoji', 'name', 'originalName', 'totalIV', 'evolveCost', 'evolution', 'moves'];
+        return ['url', 'path', 'emoji', 'name', 'originalName', 'totalIV', 'evolveCost', 'evolution', 'moves'];
     }
     static get idColumn() {
         return 'pokemonId';
     }
+	get path() {
+		if(this.shiny) {
+            return `/sprites/shiny/${this.originalName.toLowerCase()}.png`;
+        }
+        else {
+            return `/sprites/normal/${this.originalName.toLowerCase()}.png`;
+        }
+	}
     get url() {
         if(this.shiny) {
             return process.env.sprites + `/shiny/${this.pokedexId}.png`;

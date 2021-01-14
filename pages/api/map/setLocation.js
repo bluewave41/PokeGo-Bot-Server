@@ -1,5 +1,6 @@
 const User = require('~/knex/models/User');
 const Coordinates = require('./Coordinates');
+const { add } = require('date-fns');
 import Utils from '~/lib/Utils';
 import Errors from '~/lib/Errors';
 import '~/lib/Database';
@@ -23,10 +24,13 @@ export default async function handler(req, res) {
     const distance = Math.abs(oldLocation.toLowerCase().charCodeAt(0) - location.toLowerCase().charCodeAt(0)) +
                      Math.abs(parseInt(oldLocation.slice(1)) - parseInt(location.slice(1)));
 
+    const endTime = add(Date.now(), { minutes: distance*5 });
+
     //add the travel request
     await TravelRequests.query().insert({
         userId: userId,
-        location: location
+        location: location,
+        end_time: endTime
     });
 
     //reset the user

@@ -1,5 +1,3 @@
-const PokemonData = require('~/lib/PokemonData');
-const PowerupTable = require('~/lib/PowerupTable');
 const Pokemon = require('./Pokemon');
 
 class CurrentEncounters extends Pokemon {

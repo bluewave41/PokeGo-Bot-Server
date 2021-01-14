@@ -77,6 +77,9 @@ export default async function handler(req, res) {
             res.json(clientData);
             return res.end();
         }
+        else {
+            //message
+        }
     }
     catch(err) {
         res.json({error: Errors.getError(err, req.headers.errors)});

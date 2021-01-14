@@ -51,13 +51,13 @@ export default async function handler(req, res) {
     if(hitObject.hit) {
         if(tryToCatch(encounter.pokemon, hitObject.multiplier, encounter.multiplier)) {
             //add xp
-            let xpGained = 100;
+            let xpGained = 200;
             switch(hitObject.multiplier) {
                 case 1.5:
-                    xpGained += 100;
+                    xpGained = 300;
                     break;
                 case 2:
-                    xpGained += 200;
+                    xpGained = 500;
                     break;
             }
 

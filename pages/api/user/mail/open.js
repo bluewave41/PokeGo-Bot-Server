@@ -2,7 +2,8 @@ import Utils from '~/lib/Utils';
 import Errors from '~/lib/Errors';
 import '~/lib/Database';
 import MailCommands from '~/lib/MailCommands';
-import PlayerMail from '~/knex/models/PlayerMail';
+import CustomError from '~/lib/errors/CustomError';
+import UserCommands from '~/lib/UserCommands';
 
 export default async function handler(req, res) {
     let userId, tableId;
@@ -21,10 +22,10 @@ export default async function handler(req, res) {
 
     const mail = await MailCommands.getMailBody(userId, tableId);
 
-    await PlayerMail.query().insert({
-        userId: userId,
-        mailId: mail.id
-    });
+    await UserCommands.update(userId, [
+        { rowName: 'nextCommand', value: 'mail/ClaimRewards' },
+        { rowName: 'savedVariable', value: mail.id }
+    ]);
 
     res.json(mail);
     res.end();

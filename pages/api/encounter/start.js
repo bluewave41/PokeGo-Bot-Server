@@ -13,6 +13,7 @@ import PokestopCommands from '~/lib/PokestopCommands';
 import Types from '~/lib/Types';
 import UserCommands from '~/lib/UserCommands';
 import Utils from '~/lib/Utils';
+import PokemonCommands from '~/lib/PokemonCommands';
 
 export default async function handler(req, res) {
     let userId, position, pokeBalls, user;
@@ -70,8 +71,15 @@ export default async function handler(req, res) {
                 saved: null
             })
             .where('userId', userId);
+            await UserCommands.addXP(userId, 100);
             return res.end();
         }
+    }
+    else if(encounter.type == 'rocket') {
+        const top3 = await PokemonCommands.getTop3(userId);
+        
+        res.json(top3);
+        return res.end();
     }
 
     //this must be a pokemon encounter

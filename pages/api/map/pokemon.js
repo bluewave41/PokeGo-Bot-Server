@@ -3,7 +3,6 @@ import '~/lib/Database';
 import EncounterCommands from '~/lib/EncounterCommands';
 import Errors from '~/lib/Errors';
 import CustomError from '~/lib/errors/CustomError';
-import InventoryCommands from '~/lib/InventoryCommands';
 import PokemonCommands from '~/lib/PokemonCommands';
 import UserCommands from '~/lib/UserCommands';
 import Utils from '~/lib/Utils';
@@ -46,11 +45,6 @@ export default async function handler(req, res) {
 }
 
 async function canAccess(userId) {
-    const pokeBallCount = await InventoryCommands.getPokeballs(userId);
-    if(!pokeBallCount.length) {
-        throw new CustomError('INSUFFICIENT_POKEBALLS');
-    }
-
     const storageAmount = await UserCommands.getRows(userId, 'storage');
     const pokemonCount = await PokemonCommands.getPokemonCount(userId);
     if(pokemonCount+1 > storageAmount) {

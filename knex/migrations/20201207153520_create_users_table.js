@@ -9,7 +9,6 @@ exports.up = function(knex) {
 	table.integer('stardust').notNullable();
 	table.string('nextCommand');
 	table.string('location').notNullable().defaultTo('s7');
-	table.json('saved');
 	table.bigint('lastMessageId');
 	table.smallint('secretId');
 	table.integer('xp').notNullable().defaultsTo(0);
@@ -22,6 +21,7 @@ exports.up = function(knex) {
 	table.smallint('streak').defaultTo(0);
 	table.tinyint('team').defaultsTo(null);
 	table.boolean('admin').defaultsTo(false);
+	table.json('saved');
 	table.timestamp('created_at').defaultTo(knex.fn.now());
 	table.timestamp('updated_at').defaultTo(knex.fn.now());
   });

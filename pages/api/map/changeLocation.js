@@ -8,7 +8,7 @@ import TravelRequests from '~/knex/models/TravelRequests';
 export default async function handler(req, res) {
     let userId;
     try {
-        Utils.doParametersExist(['userId'], req.body, 'MISSING_PARAMETER');
+        Utils.doParametersExist(['userId'], req.body);
         userId = req.body.userId;
     }
     catch(err) {
