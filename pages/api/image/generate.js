@@ -44,5 +44,5 @@ export default async function handler(req, res) {
         //{ input: Buffer.from(health), top: p2Metrics.height+10, left: leftMargin }])
         .toFile(`public/battle/${req.body.userId}.png`);
 		
-	req.end();
+	res.end();
 }
