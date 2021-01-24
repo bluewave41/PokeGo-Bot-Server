@@ -6,6 +6,16 @@ const fs = require('fs').promises;
 const attributes = { stroke: 'black'};
 const options = { x: 0, y: 0, fontSize: 36, anchor: 'top', attributes: attributes };
 
+/*const charge = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
+<linearGradient id="lg" x1="0.5" y1="1" x2="0.5" y2="0">
+    <stop offset="0%" stop-opacity="1" stop-color="royalblue"/>
+    <stop offset="40%" stop-opacity="1" stop-color="royalblue"/>
+    <stop offset="40%" stop-opacity="0" stop-color="royalblue"/>
+    <stop offset="100%" stop-opacity="0" stop-color="royalblue"/>
+</linearGradient>
+<circle cx="50" cy="50" r="45" fill="url(#lg)" stroke="crimson" stroke-width="5"/>
+</svg>`;*/
+
 export default async function handler(req, res) {
 	const p1 = req.body.p1;
 	const p2 = req.body.p2;
@@ -15,6 +25,8 @@ export default async function handler(req, res) {
 	
 	const p2Name = textToSVG.getSVG(p2.name, options);
     const p2Metrics = textToSVG.getMetrics(p2.name, options);
+	
+	const p1HealthPercentage = Math.floor(p1.hp/p1.maxHP)*100;
 	
     const background = sharp('public/battle/background.png');
     const shield = await sharp('public/battle/shield.png')
@@ -39,10 +51,26 @@ export default async function handler(req, res) {
         { input: shield, top: 0, left: p1Metrics.width+10 },
         { input: shield, top: 0, left: p1Metrics.width+55 },
         { input: shield, top: 0, left: leftMargin-35-10 },
-        { input: shield, top: 0, left: leftMargin-35-55 }])
-        //{ input: Buffer.from(health), top: p2Metrics.height+10, left: 5 },
-        //{ input: Buffer.from(health), top: p2Metrics.height+10, left: leftMargin }])
+        { input: shield, top: 0, left: leftMargin-35-55 },
+        { input: Buffer.from(getHealth(p1.hp, p1.maxHP)), top: p2Metrics.height+10, left: 5 },
+        { input: Buffer.from(getHealth(p2.hp, p2.maxHP)), top: p2Metrics.height+10, left: leftMargin }])
         .toFile(`public/battle/${req.body.userId}.png`);
 		
 	res.end();
+}
+
+function getHealth(currentHP, maxHP) {
+	const remaining = Math.floor(currentHP/maxHP)*100;
+	return `
+		<svg xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<linearGradient id="MyGradient" x2="100%" y2="0%">
+					<stop offset="${remaining}%" stop-color="green" />
+					<stop offset="${100-remaining}%" stop-color="black" />
+				</linearGradient>
+			</defs>
+
+			<rect fill="url(#MyGradient)" stroke="black" stroke-width="1"  
+				x="0" y="0" width="150" height="10"/>
+	</svg>`;
 }
