@@ -29,6 +29,8 @@
     "objection": "^2.2.3",
     "objection-db-errors": "^1.1.2",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "sharp": "^0.27.0",
+    "text-to-svg": "^3.1.5"
   }
 }
