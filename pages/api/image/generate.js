@@ -56,26 +56,18 @@ export default async function handler(req, res) {
 		{ input: Buffer.from(p2Cp), top: p2Metrics.height+10, left: leftMargin }];
 		
 	if(p1Shields == 2) {
-		composite,push([
-		    { input: shield, top: 0, left: p1Metrics.width+10 },
-			{ input: shield, top: 0, left: p1Metrics.width+55 },
-		]);
+		composite.push({ input: shield, top: 0, left: p1Metrics.width+10 });
+		composite.push({ input: shield, top: 0, left: p1Metrics.width+55 });
 	}
 	else if(p1Shields == 1) {
-		composite,push([
-		    { input: shield, top: 0, left: p1Metrics.width+10 },
-		]);
+		composite.push({ input: shield, top: 0, left: p1Metrics.width+10 });	
 	}
 	if(p2Shields == 2) {
-		composite.push([
-		    { input: shield, top: 0, left: leftMargin-35-10 },
-			{ input: shield, top: 0, left: leftMargin-35-55 },
-		])
+		composite.push({ input: shield, top: 0, left: leftMargin-35-10 });
+		composite.push({ input: shield, top: 0, left: leftMargin-35-55 });
 	}
 	else if(p2Shields == 1) {
-		composite.push([
-		    { input: shield, top: 0, left: leftMargin-35-10 },
-		])
+		composite.push({ input: shield, top: 0, left: leftMargin-35-10 });
 	}
 
     await background.composite(composite)
