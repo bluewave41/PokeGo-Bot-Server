@@ -46,39 +46,40 @@ export default async function handler(req, res) {
 
     const metadata = await background.metadata();
     const leftMargin = metadata.width-p2Metrics.width;
-
-    await background.composite([
+	
+	let composite = [
         { input: leftPokemon, top: 300, left: 100 },
         { input: rightPokemon, top: 300, left: leftMargin },
         { input: Buffer.from(p1Name), top: 0, left: 0 },
         { input: Buffer.from(p2Name), top: 0, left: leftMargin },
 		{ input: Buffer.from(p1Cp), top: p2Metrics.height+10, left: 0 },
-		{ input: Buffer.from(p2Cp), top: p2Metrics.height+10, left: leftMargin }])
+		{ input: Buffer.from(p2Cp), top: p2Metrics.height+10, left: leftMargin }];
 		
 	if(p1Shields == 2) {
-		await background.composite([
+		composite,push([
 		    { input: shield, top: 0, left: p1Metrics.width+10 },
 			{ input: shield, top: 0, left: p1Metrics.width+55 },
 		]);
 	}
 	else if(p1Shields == 1) {
-		await background.composite([
+		composite,push([
 		    { input: shield, top: 0, left: p1Metrics.width+10 },
 		]);
 	}
 	if(p2Shields == 2) {
-		await background.composite([
+		composite.push([
 		    { input: shield, top: 0, left: leftMargin-35-10 },
 			{ input: shield, top: 0, left: leftMargin-35-55 },
-		]);
+		])
 	}
 	else if(p2Shields == 1) {
-		await background.composite([
+		composite.push([
 		    { input: shield, top: 0, left: leftMargin-35-10 },
-		]);
+		])
 	}
-	
-	await background.toFile(`public/battle/${req.body.userId}.png`);
+
+    await background.composite(composite)
+		.toFile(`public/battle/${req.body.userId}.png`);
 		
 	res.end();
 }
