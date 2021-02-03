@@ -10,9 +10,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles({
-	root: {
-		backgroundColor: '#52057b',
+const useStyles = makeStyles((theme) => ({
+	appBar: {
+        backgroundColor: '#52057b',
+        zIndex: theme.zIndex.drawer+1,
     },
     logo: {
         width: '40px',
@@ -20,8 +21,9 @@ const useStyles = makeStyles({
     },
     center: {
         textAlign: 'center',
-    }
-});
+    },
+    toolbar: theme.mixins.toolbar,
+}));
 
 
 export default function NavBar(props) {
@@ -38,7 +40,7 @@ export default function NavBar(props) {
 
 	let avatar = props.avatar || '';
 	return (
-		<AppBar position="static" className={classes.root}>
+		<AppBar className={classes.appBar}>
 		<Toolbar>
             <img src='/avatar.png' onClick={handleClick} className={classes.logo} />
             <Typography variant="h5" component="h2" className={classes.center}>
@@ -46,9 +48,10 @@ export default function NavBar(props) {
 			</Typography>
             <Box display={{xs: 'none', sm: 'none', md: 'inherit'}}>
 			    <Button color="inherit"><Link href="/">Home</Link></Button>
+                <Button color="inherit"><Link href="/help">Help</Link></Button>
                 { props.avatar ? null : <Button color="inherit"><a href='https://discord.com/api/oauth2/authorize?client_id=721674409659858965&redirect_uri=http%3A%2F%2F10.3.141.175%3A3000%2Fapi%2Fauthorize&response_type=code&scope=identify'>Login</a></Button> }
 			    { props.avatar ? <Button color="inherit"><Link href='/pokemon'>Pokemon</Link></Button> : null }
-			    <Button color="inherit">Logout</Button>
+			    { props.avatar ? <Button color="inherit">Logout</Button> : null }
             </Box>
 
 			<Avatar style={{marginLeft: 'auto'}} src={avatar} />

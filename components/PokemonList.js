@@ -10,7 +10,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import axios from 'axios';
 import Badge from '@material-ui/core/Badge';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	message: {
 		padding: '36px',
 		textAlign: 'center',
@@ -29,8 +29,9 @@ const useStyles = makeStyles({
 	},
 	icon: {
 		color: 'white',
-	}
-});
+    },
+    toolbar: theme.mixins.toolbar,
+}));
 
 export default function PokemonList(props) {
 	const classes = useStyles();
@@ -67,6 +68,7 @@ export default function PokemonList(props) {
 
 	return (
 		<div>
+            <div className={classes.toolbar} />
 			{ pokemon.map(el => <PokemonCard pokemon={el} onAdd={onAdd} key={el.pokemonId} active={selected.includes(el.pokemonId)}/>) }
 			
 			{selected.length ?
