@@ -49,7 +49,7 @@ export default function NavBar(props) {
             <Box display={{xs: 'none', sm: 'none', md: 'inherit'}}>
 			    <Button color="inherit"><Link href="/">Home</Link></Button>
                 <Button color="inherit"><Link href="/help">Help</Link></Button>
-                { props.avatar ? null : <Button color="inherit"><a href='https://discord.com/api/oauth2/authorize?client_id=721674409659858965&redirect_uri=http%3A%2F%2F10.3.141.175%3A3000%2Fapi%2Fauthorize&response_type=code&scope=identify'>Login</a></Button> }
+                { props.avatar ? null : <Button color="inherit"><a href='https://discord.com/api/oauth2/authorize?client_id=721674409659858965&redirect_uri=https%3A%2F%2Fbluewave41.xyz%2Fapi%2Fauthorize&response_type=code&scope=identify'>Login</a></Button> }
 			    { props.avatar ? <Button color="inherit"><Link href='/pokemon'>Pokemon</Link></Button> : null }
 			    { props.avatar ? <Button color="inherit">Logout</Button> : null }
             </Box>
@@ -65,7 +65,7 @@ export default function NavBar(props) {
             >
                 <MenuItem onClick={handleClose}><Link href='/'>Home</Link></MenuItem>
                 <MenuItem onClick={handleClose}><Link href='/help'>Help</Link></MenuItem>
-                { props.avatar ? null : <MenuItem onClick={handleClose}><a href='https://discord.com/api/oauth2/authorize?client_id=721674409659858965&redirect_uri=http%3A%2F%2F10.3.141.175%3A3000%2Fapi%2Fauthorize&response_type=code&scope=identify'>Login</a></MenuItem>}
+                { props.avatar ? null : <MenuItem onClick={handleClose}><a href='https://discord.com/api/oauth2/authorize?client_id=721674409659858965&redirect_uri=https%3A%2F%2Fbluewave41.xyz%2Fapi%2Fauthorize&response_type=code&scope=identify'>Login</a></MenuItem>}
                 { props.avatar ? <MenuItem onClick={handleClose}><Link href='/pokemon'>Pokemon</Link></MenuItem> : null }
                 { props.avatar ? <MenuItem onClick={handleClose}>Logout</MenuItem> : null}
             </Menu>
