@@ -110,9 +110,11 @@ export default function PermanentDrawerLeft() {
                 {['favorite', 'display', 'list', 'starter', 'inventory', 'nickname', 'daily', 'evolve', 'info', 'mail', 'medal', 'news',
                   'pokedex', 'redeem', 'teams', 'search'].sort()
                     .map((text) => (
-                        <ListItem button key={text}>
-                            <Link className={classes.capitalize} href={`/help/${text}`}>{text.charAt(0).toUpperCase() + text.slice(1)}</Link>
-                        </ListItem>
+                        <Link href={`/help/${text}`}>
+                            <ListItem button key={text}>
+                                {text.charAt(0).toUpperCase() + text.slice(1)}
+                            </ListItem>
+                        </Link>
                     ))}
             </List>
           </Drawer>

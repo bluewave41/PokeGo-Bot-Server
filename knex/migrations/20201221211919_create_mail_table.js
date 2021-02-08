@@ -6,7 +6,7 @@ exports.up = function(knex) {
 	  table.string('title').notNullable();
 	  table.string('message').notNullable();
 	  table.boolean('read').defaultsTo(false);
-	  table.boolean('claimedrewards').defaultsTo(false);
+	  table.boolean('claimedRewards').defaultsTo(false);
 	  table.unique(['userId', 'title']);
   })
 };
