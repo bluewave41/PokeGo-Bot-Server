@@ -37,6 +37,9 @@ export default function TeamHelpPage(props) {
                 <p>Usage: !team</p>
                 <p>Requirements: Cannot have already joined a team, level 5</p>
                 <p>Description: Allows you to join a team.</p>
+                <Typography paragraph>
+                    You can only join one team. Once you've selected a team you'll be unable to change it.
+                </Typography>
             </main>
 		</div>
 	);

@@ -3,6 +3,7 @@ import '@fontsource/roboto'
 import { applySession } from 'next-session';
 import DesktopHelpDrawer from '../../../components/DesktopHelpDrawer';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,10 +17,14 @@ const useStyles = makeStyles((theme) => ({
     center: {
         textAlign: 'center'
     },
+    link: {
+        color: 'blue',
+        textDecoration: 'underline',
+    },
     toolbar: theme.mixins.toolbar,
 }));
 
-export default function TeamSelectHelpPage(props) {
+export default function SelectTeamHelpPage(props) {
     const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -35,11 +40,11 @@ export default function TeamSelectHelpPage(props) {
                 <div className={classes.toolbar} />
                 <h1 className={classes.center}>Selecting a Team</h1>
                 <Typography paragraph>
-                    Selecting a team will open the same menu that creating a team does. This time though the slots may already be filled
-                    with Pokemon if you previously put Pokemon there.
+                    You can select a team from the teams menu with "select (team name)." Selecting a team will immediately open the
+                    <span> </span><span className={classes.link}><Link href='/help/teams/slot'>select slot</Link></span> menu.
                 </Typography>
                 <Typography paragraph>
-                    You can quit this menu with the !quit command.
+                    You can quit this menu at any time with the quit command.
                 </Typography>
             </main>
 		</div>

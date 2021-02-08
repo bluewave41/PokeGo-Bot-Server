@@ -37,8 +37,12 @@ export default function NewsHelpPage(props) {
                 <p>Usage: !news</p>
                 <p>Description: Displays a list of news articles.</p>
                 <Typography paragraph>
-                    News articles detail events and changes to bot behavior. You can read a news article by doing !news and then selecting
-                    the number corresponding to the article in the new menu.
+                    News articles detail events and changes to bot behavior. You can read a news article by doing !news and then sending
+                    the ID of the article you wish to read.
+                </Typography>
+                <Typography paragraph>
+                    Should there ever be more than 25 news articles you can change pages with the arrow reactions. Clicking a reaction
+                    will change to the next page.
                 </Typography>
             </main>
 		</div>

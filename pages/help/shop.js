@@ -39,6 +39,7 @@ export default function ShopHelpPage(props) {
                 <p>Example: !shop buy poke</p>
                 <p>Example: !shop buy poke 2</p>
                 <p>Example: !shop sell poke</p>
+                <p>Example: !shop sell poke 2</p>
                 <p>Description: Allows you to interact with the shop.</p>
             </main>
 		</div>

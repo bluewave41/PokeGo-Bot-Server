@@ -36,7 +36,7 @@ export default function QuitHelpPage(props) {
                 <h1 className={classes.center}>Quit</h1>
                 <p>Usage: !quit</p>
                 <p>Description: Allows you to quit a menu. If you're ever stuck, quit will allow you to exit whatever menu you are in.
-                    You can check what menu you are in with the info command if you're ever stuck.
+                    You can check what menu you are in with the info command.
                 </p>
             </main>
 		</div>

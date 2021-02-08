@@ -2,7 +2,6 @@ import Head from 'next/head'
 import '@fontsource/roboto'
 import { applySession } from 'next-session';
 import DesktopHelpDrawer from '../../components/DesktopHelpDrawer';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

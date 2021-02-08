@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
     center: {
         textAlign: 'center'
     },
+    link: {
+        color: 'blue',
+        textDecoration: 'underline',
+    },
     toolbar: theme.mixins.toolbar,
 }));
 
@@ -40,14 +44,9 @@ export default function TeamsHelpPage(props) {
                 <Typography paragraph>
                     !teams will open a menu displaying your current teams. From here you can do one of the following:
                 </Typography>
-                <ul>
-                    <li><Link href='/help/teams/create'>create (team name)</Link></li>
-                    <li>select (team name)</li>
-                    <li>delete (team name)</li>
-                </ul>
-                <Typography paragraph>
-                    For Pokemon with multiple types the multiplier becomes the average of both.
-                </Typography>
+                <div className={classes.link}><Link href='/help/teams/create'>create (team name)</Link></div>
+                <div className={classes.link}><Link href='/help/teams/select'>select (team name)</Link></div>
+                <div className={classes.link}><Link href='/help/teams/delete'>delete (team name)</Link></div>
             </main>
 		</div>
 	);

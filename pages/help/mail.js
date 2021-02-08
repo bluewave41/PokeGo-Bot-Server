@@ -37,10 +37,20 @@ export default function MailHelpPage(props) {
                 <p>Usage: !mail</p>
                 <p>Description: Opens the mail menu allowing you to manage your mail.</p>
                 <Typography paragraph>
-                    Mail will be received when you level up or reach level 5 to inform you that you're allowed to select a team.
-                    Upon opening the mail menu you will be able to input a number to select that message.
-                    If the message has rewards you'll now be able to input "claim" to receive the rewards.
-                    Mail with a bell is unread.
+                    Mail will be received when you level up. Mail will contain your rewards for reaching a new level and at
+                    level 5 you will receive a message informing you that you can now join a team.
+                </Typography>
+                <Typography paragraph>
+                    If you have more than 25 messages you can swap between pages with the arrow reactions. Clicking a reaction
+                    will change pages.
+                </Typography>
+                <Typography paragraph>
+                    To read the contents of a message simply input the mail ID while browsing the menu. While viewing a message you
+                    can claim any rewards by sending "claim"
+                </Typography>
+                <Typography paragraph>
+                    Mail with a bell indicates the message has not yet been read. An exclamation point indicates that the mail
+                    has unclaimed rewards.
                 </Typography>
             </main>
 		</div>

@@ -64,9 +64,10 @@ export default function NavBar(props) {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose}><Link href='/'>Home</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href='/help'>Help</Link></MenuItem>
                 { props.avatar ? null : <MenuItem onClick={handleClose}><a href='https://discord.com/api/oauth2/authorize?client_id=721674409659858965&redirect_uri=http%3A%2F%2F10.3.141.175%3A3000%2Fapi%2Fauthorize&response_type=code&scope=identify'>Login</a></MenuItem>}
                 { props.avatar ? <MenuItem onClick={handleClose}><Link href='/pokemon'>Pokemon</Link></MenuItem> : null }
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                { props.avatar ? <MenuItem onClick={handleClose}>Logout</MenuItem> : null}
             </Menu>
 		</AppBar>
 	);

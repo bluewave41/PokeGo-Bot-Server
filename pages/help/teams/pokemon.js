@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import '@fontsource/roboto'
 import { applySession } from 'next-session';
-import DesktopHelpDrawer from '../components/DesktopHelpDrawer';
-import { useMediaQuery } from '@material-ui/core';
+import DesktopHelpDrawer from '../../../components/DesktopHelpDrawer';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,33 +15,39 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     center: {
-        textAlign: 'center',
+        textAlign: 'center'
+    },
+    link: {
+        color: 'blue',
+        textDecoration: 'underline'
     },
     toolbar: theme.mixins.toolbar,
 }));
 
-export default function Help(props) {
-    const matches = useMediaQuery('(min-width:600px)');
+export default function SelectPokemonHelpPage(props) {
     const classes = useStyles();
-    let elem = null;
-    if(!matches) {
-        elem = <Typography variant='h5'>
-            You can view the command drawer by sliding from the left.
-        </Typography>
-    }
 	return (
-		<div>
+		<div className={classes.root}>
+            <div className={classes.toolbar} />
 			<Head>
 				<meta
 					name="viewport"
 					content="minimum-scale=1, initial-scale=1, width=device-width"
 				/>
 			</Head>
-            <div className={classes.toolbar} />
-            <main className={classes.content}>
-                {elem}
-            </main>
             <DesktopHelpDrawer />
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <h1 className={classes.center}>Selecting a Pokemon</h1>
+                <Typography paragraph>
+                    You can select a Pokemon to add to the selected slot by typing in the Pokemon's ID number. You can change pages
+                    using the arrow reactions.
+                </Typography>
+                <Typography paragraph>
+                    Selecting a Pokemon will open the
+                    <span> </span><span className={classes.link}><Link href='/help/teams/slot'>select slot</Link></span> menu.
+                </Typography>
+            </main>
 		</div>
 	);
 }

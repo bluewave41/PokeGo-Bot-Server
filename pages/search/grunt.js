@@ -7,10 +7,6 @@ import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    link: {
-        color: 'blue',
-        cursor: 'pointer',
-    },
     root: {
         display: 'flex'
     },

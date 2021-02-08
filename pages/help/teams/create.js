@@ -3,6 +3,7 @@ import '@fontsource/roboto'
 import { applySession } from 'next-session';
 import DesktopHelpDrawer from '../../../components/DesktopHelpDrawer';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,10 +17,14 @@ const useStyles = makeStyles((theme) => ({
     center: {
         textAlign: 'center'
     },
+    link: {
+        color: 'blue',
+        textDecoration: 'underline',
+    },
     toolbar: theme.mixins.toolbar,
 }));
 
-export default function TeamCreateHelpPage(props) {
+export default function CreateTeamHelpPage(props) {
     const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -35,15 +40,15 @@ export default function TeamCreateHelpPage(props) {
                 <div className={classes.toolbar} />
                 <h1 className={classes.center}>Creating a Team</h1>
                 <Typography paragraph>
-                    Creating a team will open a menu with 3 slots. Start by selecting a slot (1, 2 or 3). A menu showing all your Pokemon
-                    will open now. You can navigate pages using the arrow reactions.
+                    You can create a team from the teams menu with "create (team name)." Creating a team will immediately open the     
+                    <span> </span><span className={classes.link}><Link href='/help/teams/slot'>select slot</Link></span> menu.
                 </Typography>
                 <Typography paragraph>
-                    Once you know which Pokemon you would like to place there simply type in its ID. You will be brought back to
-                    the previous menu where you will be able to select a new slot and place a Pokemon there.
+                    You cannot have 2 teams with the same names and names are limited to 20 characters maximum.
+                     You can have a maximum of 20 teams total.
                 </Typography>
                 <Typography paragraph>
-                    You can quit this menu with the !quit command.
+                    You can quit this menu at any time with the quit command.
                 </Typography>
             </main>
 		</div>

@@ -34,10 +34,18 @@ export default function TravelHelpPage(props) {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <h1 className={classes.center}>Travel</h1>
-                <p>Usage: !travel</p>
-                <p>Description: Opens the map and allows you to select a new square to travel to. Moving to a new square takes 5 minutes and you'll be
-                    unable to search for Pokemon during that time.
+                <p>Usage: !travel (location?)</p>
+                <p>Description: Opens the map and allows you to select a new square to travel to. Moving a single square takes 5 minutes and
+                    you'll be unable to search for Pokemon until you've reached your destination.
                 </p>
+                <Typography paragraph>
+                    You can bypass the map if you already know where you want to travel with as an example !travel S6. You will still
+                    have to wait but this allows you to perform a single command.
+                </Typography>
+                <Typography paragraph>
+                    Travel ticket items will allow you to travel to any square you wish instantly. These can be received as daily
+                    rewards.
+                </Typography>
             </main>
 		</div>
 	);

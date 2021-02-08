@@ -3,6 +3,7 @@ import '@fontsource/roboto'
 import { applySession } from 'next-session';
 import DesktopHelpDrawer from '../../../components/DesktopHelpDrawer';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
 }));
 
-export default function TeamDeleteHelpPage(props) {
+export default function DeleteTeamHelpPage(props) {
     const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -35,8 +36,10 @@ export default function TeamDeleteHelpPage(props) {
                 <div className={classes.toolbar} />
                 <h1 className={classes.center}>Deleting a Team</h1>
                 <Typography paragraph>
-                    Deleting a team will remove the team and all associated Pokemon from your teams. Once a team is deleted it cannot be
-                    recovered and must be created again.
+                    You can delete a team from the teams menu with "delete (team name)."
+                </Typography>
+                <Typography paragraph>
+                    You can quit this menu at any time with the quit command.
                 </Typography>
             </main>
 		</div>

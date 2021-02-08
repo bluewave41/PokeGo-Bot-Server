@@ -34,9 +34,22 @@ export default function ListHelpPage(props) {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <h1 className={classes.center}>List</h1>
-                <p>Usage: !list (page number)</p>
+                <p>Usage: !list (page number) (options)</p>
                 <p>Note: page number is optional and defaults to 1</p>
                 <p>Description: Displays a list of 25 Pokemon. Pages can be selected with the optional page number parameter.</p>
+                <Typography paragraph>
+                    Below is a list of options you can sort by:
+                </Typography>
+                <ul>
+                    <li>shadow</li>
+                    <li>shiny</li>
+                    <li>favorite/favourite</li>
+                    <li>iv [&lt;, &gt;]x (iv&gt;50, iv&lt;50)</li>
+                    <li>sort [&lt;, &gt;] [cp, iv, level, id, pokedex] (sort&gt;cp)</li>
+                </ul>
+                <Typography paragraph>
+                    !list 5 shadow favorite sort&gt;cp (display only favorited shadow Pokemon from page 5 sorted by CP ascending order)
+                </Typography>
             </main>
 		</div>
 	);
