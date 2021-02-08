@@ -6,7 +6,7 @@ import '~/lib/Database';
 
 export default async function handler(req, res) {
     await applySession(req, res);
-    let redirect = 'http://10.3.141.175:3000/api/authorize';
+    let redirect = 'http://bluewave41.xyz:3000/api/authorize';
 	let token = await oauth.tokenRequest({
 		clientId: '721674409659858965',
 		clientSecret: 'JHfpaK2YRTDkdcHNdO1yZNPiq0YjbuIk',
