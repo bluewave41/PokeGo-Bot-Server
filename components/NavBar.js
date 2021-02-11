@@ -46,7 +46,7 @@ export default function NavBar(props) {
             <Typography variant="h5" component="h2" className={classes.center}>
 				PokeGO
 			</Typography>
-            <Box display={{xs: 'none', sm: 'none', md: 'inherit'}}>
+            <Box display={{xs: 'none', sm: 'inherit'}}>
 			    <Button color="inherit"><Link href="/">Home</Link></Button>
                 <Button color="inherit"><Link href="/help">Help</Link></Button>
                 { props.avatar ? null : <Button color="inherit"><a href={process.env.oauthUrl}>Login</a></Button> }

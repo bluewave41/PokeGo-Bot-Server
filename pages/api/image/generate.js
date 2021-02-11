@@ -11,6 +11,8 @@ export default async function handler(req, res) {
 	const p2 = req.body.p2;
 	const p1Shields = req.body.p1Shields;
 	const p2Shields = req.body.p2Shields;
+	
+	console.log(p1, p2);
 		
 	const p1Name = textToSVG.getSVG(p1.name, options);
 	const p1Metrics = textToSVG.getMetrics(p1.name, options);
@@ -45,7 +47,7 @@ export default async function handler(req, res) {
 	
 	let composite = [
         { input: leftPokemon, top: metadata.height-leftMetadata.height-100, left: 100 },
-        { input: rightPokemon, top: metadata.height-rightMetadata.height-100, left: leftMargin-100 },
+        { input: rightPokemon, top: metadata.height-rightMetadata.height-100, left: metadata.width-rightMetadata.width-100 }, //account for shadow
         { input: Buffer.from(p1Name), top: 0, left: 0 },
         { input: Buffer.from(p2Name), top: 0, left: leftMargin },
 		{ input: Buffer.from(p1Cp), top: p2Metrics.height+10, left: 0 },
