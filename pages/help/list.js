@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import '@fontsource/roboto'
 import { applySession } from 'next-session';
-import DesktopHelpDrawer from '../../components/DesktopHelpDrawer';
+import HelpDrawer from '../../components/HelpDrawer';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,7 +30,7 @@ export default function ListHelpPage(props) {
 					content="minimum-scale=1, initial-scale=1, width=device-width"
 				/>
 			</Head>
-            <DesktopHelpDrawer />
+            <HelpDrawer />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <h1 className={classes.center}>List</h1>

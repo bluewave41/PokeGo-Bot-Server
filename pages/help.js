@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import '@fontsource/roboto'
 import { applySession } from 'next-session';
-import DesktopHelpDrawer from '../components/DesktopHelpDrawer';
+import HelpDrawer from '../components/HelpDrawer';
 import { useMediaQuery } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,10 +22,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Help(props) {
-    const matches = useMediaQuery('(min-width:600px)');
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const classes = useStyles();
     let elem = null;
     if(!matches) {
+        console.log('HERE');
+        console.log(matches);
         elem = <Typography variant='h5'>
             You can view the command drawer by sliding from the left.
         </Typography>
@@ -41,7 +45,7 @@ export default function Help(props) {
             <main className={classes.content}>
                 {elem}
             </main>
-            <DesktopHelpDrawer />
+            <HelpDrawer />
 		</div>
 	);
 }
