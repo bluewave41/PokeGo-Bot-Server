@@ -50,7 +50,7 @@ export default function PermanentDrawerLeft() {
                 <Divider />
                 <List>
                     {['favorite', 'display', 'list', 'starter', 'inventory', 'nickname', 'daily', 'evolve', 'info', 'mail', 'medal', 'news',
-                        'pokedex', 'redeem', 'teams', 'search', 'powerup', 'team'].sort()
+                        'pokedex', 'redeem', 'teams', 'search', 'powerup', 'team', 'travel'].sort()
                         .map((text) => (
                             <Link href={`/help/${text}`}>
                                 <ListItem button key={text}>

@@ -43,7 +43,7 @@ export default function SwipeableTemporaryDrawer() {
     >
         <List>
             {['favorite', 'display', 'list', 'starter', 'inventory', 'nickname', 'daily', 'evolve', 'info', 'mail', 'medal', 'news',
-              'pokedex', 'redeem', 'teams', 'search', 'powerup', 'team'].sort()
+              'pokedex', 'redeem', 'teams', 'search', 'powerup', 'team', 'travel'].sort()
                 .map((text) => (
                     <ListItem button key={text}>
                         <Link className={classes.capitalize} href={`/help/${text}`}>{text.charAt(0).toUpperCase() + text.slice(1)}</Link>
