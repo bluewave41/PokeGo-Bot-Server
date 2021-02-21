@@ -1,21 +1,82 @@
 import React from 'react';
 import '../styles/globals.css';
-import NavBar from '../components/NavBar';
+import NavDrawer from '../components/NavDrawer';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { applySession } from 'next-session';
 
-function MyApp({ Component, pageProps }) {
-	React.useEffect(() => {
-		// Remove the server-side injected CSS.
-		const jssStyles = document.querySelector('#jss-server-side');
-		if(jssStyles) {
-			jssStyles.parentElement.removeChild(jssStyles);
-		}
-	}, []);
-	return (
-            <>
-				<NavBar username={pageProps.username} avatar={pageProps.avatar}/>
-				<Component {...pageProps} />
-            </>
-	);
+const breakpoints = createBreakpoints({})
+
+const theme = createMuiTheme({
+    drawerWidth: 240,
+    palette: {
+        background: {
+            default: '#000'
+        },
+        text: {
+            primary: '#FFF'
+        }
+    },
+    content: {
+        [breakpoints.up('sm')]: {
+            paddingLeft: 250
+        },
+        flexGrow: 1,
+        paddingLeft: 0
+    },
+})
+
+function MyApp({ Component, pageProps, user }) {
+    const [userInfo, setUserInfo] = React.useState({});
+    React.useEffect(() => {
+        if(user.avatar) {
+            setUserInfo(user);
+        }
+    });
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <NavDrawer user={userInfo} />
+            <Component {...pageProps} />
+        </ThemeProvider>
+    );
+}
+
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+    /*CLIENT*/
+    if(typeof window !== 'undefined') {
+        return {
+            user: {
+                avatar: null,
+                username: null,
+            }
+        }
+    }
+    await applySession(ctx.req, ctx.res);
+
+    if(!ctx.req.session.hasOwnProperty('user')) {
+        return {
+            user: {
+                avatar: null,
+                username: null,
+            }
+        }
+    }
+    
+    let pageProps = {}
+    if (Component.getInitialProps) {
+        pageProps = await Component.getInitialProps(ctx);
+    }
+    return {
+        user: {
+            avatar: `https://cdn.discordapp.com/avatars/${ctx.req.session.user.id}/${ctx.req.session.user.avatar}`,
+            username: ctx.req.session.user.username,
+            initial: true,
+        },
+        pageProps
+    }
 }
 
 export default MyApp
