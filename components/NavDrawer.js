@@ -23,6 +23,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +38,12 @@ const useStyles = makeStyles((theme) => ({
             width: theme.drawerWidth,
             flexShrink: 0,
         },
+    },
+    grid: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingRight: '5px'
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -168,7 +175,14 @@ function ResponsiveDrawer(props) {
                     <Typography variant="h6" noWrap>
                         Poke GO
                     </Typography>
-                    <Avatar style={{ marginLeft: 'auto' }} src={props.user.avatar} />
+                    <Grid container justify='flex-end'>
+                        <Grid item className={classes.grid}>
+                            <span>{props.user.username}</span>
+                        </Grid>
+                        <Grid item>
+                            <Avatar src={props.user.avatar} component='span' />
+                        </Grid>
+                    </Grid>
                 </Toolbar>
             </AppBar>
             <nav className={classes.drawer} aria-label="mailbox folders">
