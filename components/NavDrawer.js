@@ -22,6 +22,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -114,6 +115,12 @@ function ResponsiveDrawer(props) {
                         </ListItem>
                     </a>
                     : null}
+                <Link href='/help/quickstart'>
+                    <ListItem button key='quickstart'>
+                        <ListItemIcon><PlayCircleOutlineIcon /></ListItemIcon>
+                        <ListItemText primary='Quickstart' />
+                    </ListItem>
+                </Link>
                 <ListItem button onClick={handleClick}>
                     <ListItemIcon>
                         <HelpIcon />

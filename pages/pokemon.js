@@ -18,8 +18,17 @@ export async function getServerSideProps({ req, res }) {
         res.statusCode = 302;
         return res.end();
     }
+    if(!req.session.user.userId) {
+        return {
+            props: {
+                pokemon: []
+            }
+        }
+    }
+
 	let pokemon = await Pokemon.query().select('*')
 		.where('ownerId', req.session.user.userId);
+
 	pokemon = pokemon.map(el => el.toJSON());
 	return {
 		props: {

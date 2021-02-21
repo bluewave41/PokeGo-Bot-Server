@@ -1,109 +1,79 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Starter from './quickstart/starter';
+import Intro from './quickstart/intro';
+import Display from './quickstart/display';
+import List from './quickstart/list';
+import Search from './quickstart/search';
+import Catching from './quickstart/catching';
+import End from './quickstart/end';
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		display: 'flex',
-        width: '100%'
-	},
-	content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
+    root: {
+        display: 'flex',
     },
-	center: {
-        textAlign: 'center'
+    stickyFooter: {
+        width: '100%',
+        position: 'fixed',
+        bottom: 0,
+        backgroundColor: '#52057b',
+        "& > *": {
+            color: 'white',
+        },
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: `${theme.drawerWidth}px`,
+            width: `calc(100% - ${theme.drawerWidth}px)`,
+        },
     },
-	button: {
-		marginRight: theme.spacing(1),
-	},
-	instructions: {
-		marginTop: theme.spacing(1),
-		marginBottom: theme.spacing(1),
-	},
-	toolbar: theme.mixins.toolbar,
+    content: {
+        ...theme.content,
+        marginBottom: '75px',
+    },
+    toolbar: theme.mixins.toolbar,
+    textContent: theme.textContent,
 }));
 
-function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-}
+export default function QuickstartPage(props) {
+    const [page, setPage] = React.useState(0);
+    const classes = useStyles();
+    const pages = [
+        <Intro />,
+        <Starter />,
+        <Display />,
+        <List />,
+        <Search />,
+        <Catching />,
+        <End />,
+    ]
 
-function getStepContent(step) {
-	switch (step) {
-		case 0:
-			return 'Select campaign settings...';
-		case 1:
-			return 'What is an ad group anyways?';
-		case 2:
-			return 'This is the bit I really care about!';
-	}
-}
-
-export default function HorizontalLinearStepper() {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
-  return (
-    <div className={classes.root}>
-      <div className={classes.toolbar} />
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                Back
-              </Button>
-
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+    return (
+        <div className={classes.root}>
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <div className={classes.textContent}>
+                    {pages[page]}
+                </div>
+            </main>
+            <BottomNavigation
+                className={classes.stickyFooter}
+                onChange={(event, newValue) => {
+                    if(newValue == 0 && page > 0) {
+                        setPage(page-1);
+                    }
+                    else if(newValue == 1 && page < pages.length-1) {
+                        setPage(page+1);
+                    }
+                }}
+                showLabels
+            >
+                <BottomNavigationAction label="Back" icon={<ChevronLeft />} />
+                <BottomNavigationAction label="Next" icon={<ChevronRight />} />
+            </BottomNavigation>
+        </div>
+    )
 }

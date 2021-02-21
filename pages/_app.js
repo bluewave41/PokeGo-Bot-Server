@@ -26,6 +26,11 @@ const theme = createMuiTheme({
         flexGrow: 1,
         paddingLeft: 0
     },
+    textContent: {
+        [breakpoints.up('sm')]: {
+            paddingLeft: 100
+        },
+    }
 })
 
 function MyApp({ Component, pageProps, user }) {

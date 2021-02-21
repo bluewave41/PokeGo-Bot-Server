@@ -26,7 +26,6 @@ export default function Home(props) {
                 />
             </Head>
             <main className={classes.content}>
-                <div className={classes.toolbar} />
                 <Grid
                     container
                     spacing={0}
