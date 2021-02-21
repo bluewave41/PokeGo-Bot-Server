@@ -65,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
     nested: {
         paddingLeft: theme.spacing(4),
     },
+    svg: {
+        pointerEvents: 'none'
+    }
 }));
 
 function ResponsiveDrawer(props) {
@@ -124,7 +127,7 @@ function ResponsiveDrawer(props) {
                     </ListItem>
                 </Link>
                 <ListItem button onClick={handleClick} className="collapse">
-                    <ListItemIcon>
+                    <ListItemIcon classes={{root: classes.svg}}>
                         <HelpIcon />
                     </ListItemIcon>
                     <ListItemText primary="Help" className="collapse" />
