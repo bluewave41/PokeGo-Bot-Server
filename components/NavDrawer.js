@@ -87,8 +87,10 @@ function ResponsiveDrawer(props) {
     const helpFields = ['Favorite', 'Display', 'List', 'Starter', 'Inventory', 'Nickname', 'Daily', 'Evolve', 'Info', 'Mail', 'Medal',
         'News', 'Pokedex', 'Redeem', 'Teams', 'Search', 'Powerup', 'Team', 'Travel'].sort();
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
+    const handleDrawerToggle = (event) => {
+        if(!event.target.classList.contains('collapse') && !event.target.parentElement.classList.contains('collapse')) {
+            setMobileOpen(!mobileOpen);
+        }
     };
 
     const drawer = (
@@ -121,11 +123,11 @@ function ResponsiveDrawer(props) {
                         <ListItemText primary='Quickstart' />
                     </ListItem>
                 </Link>
-                <ListItem button onClick={handleClick}>
+                <ListItem button onClick={handleClick} className="collapse">
                     <ListItemIcon>
                         <HelpIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Help" />
+                    <ListItemText primary="Help" className="collapse" />
                     {open ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
@@ -175,6 +177,7 @@ function ResponsiveDrawer(props) {
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                         open={mobileOpen}
                         onClose={handleDrawerToggle}
+                        onClick={handleDrawerToggle}
                         classes={{
                             paper: classes.drawerPaper,
                         }}
