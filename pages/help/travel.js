@@ -39,7 +39,7 @@ export default function TravelHelpPage(props) {
                     rewards.
                 </Typography>
                 <Typography paragraph>
-                    You can celed travel requests with !travel cancel.
+                    You can cancel travel requests with !travel cancel.
                 </Typography>
             </main>
 		</div>
