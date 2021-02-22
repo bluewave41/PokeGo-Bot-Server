@@ -20,11 +20,18 @@ export default function FavoriteHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Favorite</h1>
-                <p>Usage: !favorite (pokemonId)</p>
-                <p>Example: !favorite 97</p>
-                <p>Aliases: favorite, favourite</p>
-                <p>Description: Adds a Pokemon to your favorites list or removes it if they were previously favorited. Favorited Pokemon cannot be transfered.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Favorite
+                </Typography>
+                <Typography paragraph>
+                    Usage: !favorite (pokemonId)
+                </Typography>
+                <Typography paragraph>
+                    Aliases: favorite, favourite
+                </Typography>
+                <Typography paragraph>
+                    Adds or removes a Pokemon from your favorites list. Favorited Pokemon cannot be transfered or traded.
+                </Typography>
             </main>
 		</div>
 	);

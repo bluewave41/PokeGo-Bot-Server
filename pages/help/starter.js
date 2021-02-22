@@ -20,9 +20,15 @@ export default function StarterHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Starter</h1>
-                <p>Usage: !starter</p>
-                <p>Description: Opens a menu allowing you to select a starter Pokemon.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Starter
+                </Typography>
+                <Typography paragraph>
+                    Usage: !starter
+                </Typography>
+                <Typography paragraph>
+                    Opens a menu allowing you to select a starter Pokemon.
+                </Typography>
                 <Typography paragraph>
                     To select a starter Pokemon simply type in the name of the Pokemon you would like.
                 </Typography>

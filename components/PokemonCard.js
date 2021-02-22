@@ -12,9 +12,8 @@ import StarIcon from '@material-ui/icons/Star';
 
 const useStyles = makeStyles({
 	root: {
-		minWidth: 175,
+		minWidth: 150,
 		display: 'inline-block',
-		height: '191px',
 		margin: '7px',
 		backgroundColor: '#3e3636',
 		color: 'white',
@@ -27,7 +26,8 @@ const useStyles = makeStyles({
 		marginBottom: 12,
 	},
 	media: {
-		width: '30%',
+        width: '128px',
+        height: '128px',
 		margin: 'auto',
 	},
 	content: {

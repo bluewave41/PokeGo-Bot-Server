@@ -20,11 +20,18 @@ export default function InventoryHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Inventory</h1>
-                <p>Usage: !inventory</p>
-                <p>Example: !inventory</p>
-                <p>Aliases: inv, inventory</p>
-                <p>Description: Shows all of the items in your inventory and the amount of each you have.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Inventory
+                </Typography>
+                <Typography paragraph>
+                    Usage: !inventory
+                </Typography>
+                <Typography paragraph>
+                    Aliases: inventory, inv
+                </Typography>
+                <Typography paragraph>
+                    Shows all of the items in your inventory as well as the amount oyu currently have.
+                </Typography>
             </main>
 		</div>
 	);

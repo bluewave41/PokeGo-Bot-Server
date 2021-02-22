@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Snackbar from '@material-ui/core/Snackbar';
 import axios from 'axios';
 import Badge from '@material-ui/core/Badge';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     message: {
@@ -39,7 +40,10 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         color: '#FFF',
     },
-    content: theme.content,
+    content: {
+        ...theme.content,
+        paddingBottom: '75px',
+    },
     toolbar: theme.mixins.toolbar,
 }));
 
@@ -80,7 +84,15 @@ export default function PokemonList(props) {
         <div className={classes.root}>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                {pokemon.map(el => <PokemonCard pokemon={el} onAdd={onAdd} key={el.pokemonId} active={selected.includes(el.pokemonId)} />)}
+                <Grid container>
+                    {pokemon.map(function(el) {
+                        return (
+                            <Grid item xs={4} sm={3} lg={2}>
+                                <PokemonCard pokemon={el} onAdd={onAdd} key={el.pokemonId} active={selected.includes(el.pokemonId)} />
+                            </Grid>
+                        )
+                    })}
+                </Grid>
                 <Snackbar
                     className={classes.snackbarMargin}
                     anchorOrigin={{

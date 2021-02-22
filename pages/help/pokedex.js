@@ -20,11 +20,15 @@ export default function PokedexHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Pokedex</h1>
-                <p>Usage: !pokedex (page)</p>
-                <p>Example: !pokedex</p>
-                <p>Example: !pokedex 2</p>
-                <p>Description: Displays the number of each Pokemon that you've seen and caught.</p>
+                <Typography variant='h2'className={classes.center}>
+                    Pokedex
+                </Typography>
+                <Typography paragraph>
+                    Usage: !pokedex (page)
+                </Typography>
+                <Typography paragraph>
+                    Displays the number of each Pokemon that you've seen and caught.
+                </Typography>
             </main>
 		</div>
 	);

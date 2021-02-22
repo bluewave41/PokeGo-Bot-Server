@@ -1,5 +1,6 @@
 import '@fontsource/roboto'
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,12 +20,19 @@ export default function NicknameHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Nickname</h1>
-                <p>Usage: !nickname (pokemonId) (name)</p>
-                <p>Example: !nickname 97 bob</p>
-                <p>Aliases: nickname, nick</p>
-                <p>Limit: 20 characters, alphanumeric characters only. A-Z and 0-9</p>
-                <p>Description: Changes a Pokemon's name to a nickname.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Nickname
+                </Typography>
+                <Typography paragraph>
+                    Usage: !nickname (pokemonId (name))
+                </Typography>
+                <Typography paragraph>
+                    Aliases: nickname, nick
+                </Typography>
+                <Typography paragraph>
+                    Changes a Pokemon's name to a nickname. Nicknames are limited to 20 characters and can only contain A-Z and 0-9.
+                    No special symbols.
+                </Typography>
             </main>
 		</div>
 	);

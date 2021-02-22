@@ -14,20 +14,30 @@ class Pokemon extends Model {
         return 'pokemonId';
     }
 	get path() {
-		if(this.shiny) {
-            return `/sprites/shiny/${this.originalName.toLowerCase()}.png`;
+        let path = `sprites/untrimmed/`;
+        if(this.shadow) {
+            path += 'shadow/';
         }
-        else {
-            return `/sprites/normal/${this.originalName.toLowerCase()}.png`;
+        path += this.shiny ? 'shiny/' : 'normal/';
+        path += this.originalName.toLowerCase();
+        if(this.gender && PokemonData[this.pokedexId].altSprite) {
+            path += 'f';
         }
+        path += '.png';
+        return path;
 	}
     get url() {
-        if(this.shiny) {
-            return process.env.sprites + `/shiny/${this.pokedexId}.png`;
+        let path = process.env.sprites + `sprites/`;
+        if(this.shadow) {
+            path += 'shadow/';
         }
-        else {
-            return process.env.sprites + `/normal/${this.pokedexId}.png`;
+        path += this.shiny ? 'shiny/' : 'normal/';
+        path += this.originalName.toLowerCase();
+        if(this.gender && PokemonData[this.pokedexId].altSprite) {
+            path += 'f';
         }
+        path += '.png';
+        return path;
     }
     get types() {
         return [PokemonData[this.pokedexId].type1, PokemonData[this.pokedexId].type2];

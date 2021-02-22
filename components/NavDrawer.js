@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         height: '40px',
     },
     drawer: {
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             width: theme.drawerWidth,
             flexShrink: 0,
         },
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             display: 'none',
         },
     },
@@ -95,7 +95,7 @@ function ResponsiveDrawer(props) {
     ];
 
     const helpFields = ['Favorite', 'Display', 'List', 'Starter', 'Inventory', 'Nickname', 'Daily', 'Evolve', 'Info', 'Mail', 'Medal',
-        'News', 'Pokedex', 'Redeem', 'Teams', 'Search', 'Powerup', 'Team', 'Travel'].sort();
+        'News', 'Pokedex', 'Redeem', 'Teams', 'Search', 'Powerup', 'Team', 'Travel', 'Shop'].sort();
 
     const handleDrawerToggle = (event) => {
         if(!event.target.classList.contains('collapse') && !event.target.parentElement.classList.contains('collapse')) {
@@ -110,7 +110,7 @@ function ResponsiveDrawer(props) {
                 {tabs.map(el => {
                     if (el.show()) {
                         return (
-                            <Link href={el.href}>
+                            <Link href={el.href} key={el.text}>
                                 <ListItem button key={el.text}>
                                     <ListItemIcon>{el.icon}</ListItemIcon>
                                     <ListItemText primary={el.text} />
@@ -127,13 +127,13 @@ function ResponsiveDrawer(props) {
                         </ListItem>
                     </a>
                     : null}
-                <Link href='/help/quickstart'>
+                <Link href='/help/quickstart' key='quickstart'>
                     <ListItem button key='quickstart'>
                         <ListItemIcon><PlayCircleOutlineIcon /></ListItemIcon>
                         <ListItemText primary='Quickstart' />
                     </ListItem>
                 </Link>
-                <ListItem button onClick={handleClick} className="collapse">
+                <ListItem button onClick={handleClick} className="collapse" key='help'>
                     <ListItemIcon classes={{root: classes.svg}}>
                         <HelpIcon />
                     </ListItemIcon>
@@ -142,9 +142,9 @@ function ResponsiveDrawer(props) {
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     {helpFields.map(el => (
-                        <Link href={`/help/${el.toLowerCase()}`}>
+                        <Link href={`/help/${el.toLowerCase()}`} key={el.toLowerCase()}>
                             <List component="div" disablePadding>
-                                <ListItem button className={classes.nested} dense>
+                                <ListItem button className={classes.nested} dense key={el.toLowerCase()}>
                                     <ListItemText primary={el} />
                                 </ListItem>
                             </List>
@@ -172,7 +172,7 @@ function ResponsiveDrawer(props) {
                         <MenuIcon />
                     </IconButton>
                     <img src='/avatar.png' className={classes.logo} />
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h6" style={{whiteSpace: 'nowrap'}}>
                         Poke GO
                     </Typography>
                     <Grid container justify='flex-end'>
@@ -205,7 +205,7 @@ function ResponsiveDrawer(props) {
                         {drawer}
                     </Drawer>
                 </Hidden>
-                <Hidden xsDown implementation="css">
+                <Hidden smDown implementation="css">
                     <Drawer
                         classes={{
                             paper: classes.drawerPaper,

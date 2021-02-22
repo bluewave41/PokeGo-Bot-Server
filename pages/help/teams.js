@@ -25,9 +25,15 @@ export default function TeamsHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Teams</h1>
-                <p>Usage: !teams</p>
-                <p>Description: Allows you to manage your team lineups for Team Rocket battles.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Teams
+                </Typography>
+                <Typography paragraph>
+                    Usage: !teams
+                </Typography>
+                <Typography paragraph>
+                    Allows you to manage your team lineups for Team Rocket battles.
+                </Typography>
                 <Typography paragraph>
                     !teams will open a menu displaying your current teams. From here you can do one of the following:
                 </Typography>

@@ -20,14 +20,25 @@ export default function ShopHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Shop</h1>
-                <p>Usage: !shop (action) (item name) (amount)</p>
-                <p>Possible actions are buy and sell. No action will show a list of items in the shop and their prices.</p>
-                <p>Example: !shop buy poke</p>
-                <p>Example: !shop buy poke 2</p>
-                <p>Example: !shop sell poke</p>
-                <p>Example: !shop sell poke 2</p>
-                <p>Description: Allows you to interact with the shop.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Shop
+                </Typography>
+                <Typography paragraph>
+                    Usage: !shop (action) (item name) (amount)
+                </Typography>
+                <Typography paragraph>
+                    Examples:    
+                </Typography>
+                <ul>
+                    <li>!shop buy poke</li>
+                    <li>!shop buy poke 2</li>
+                    <li>!shop sell poke</li>
+                    <li>!shop sell poke 2</li>
+                </ul> 
+                <Typography paragraph>
+                    As shown above you do not need to use the full name of the item. The name however needs to be unique to the item you
+                    want. 
+                </Typography>
             </main>
 		</div>
 	);

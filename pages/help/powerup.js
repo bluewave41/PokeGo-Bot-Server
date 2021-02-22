@@ -40,10 +40,15 @@ export default function PowerupHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Powerup</h1>
-                <p>Usage: !powerup (pokemonId)</p>
-                <p>Example: !powerup 97</p>
-                <p>Description: Allows you to powerup a Pokemon. This requires candy for the Pokemon you'd like to level up.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Powerup
+                </Typography>
+                <Typography paragraph>
+                    Usage: !powerup (pokemonId)
+                </Typography>
+                <Typography paragraph>
+                    Allows you to powerup a Pokemon. This requires candy for the Pokemon you'd like to level up.
+                </Typography>
                 <Typography paragraph>
                     Doing !powerup (pokemonId) will open a menu displaying multiple pieces of information.
                 </Typography>
@@ -55,7 +60,6 @@ export default function PowerupHelpPage(props) {
                     <div><span className={classes.blueBullet}>•</span><span> The minimum and maximum numbers of times you can power this Pokemon up</span></div>
                     <div><span className={classes.purpleBullet}>•</span><span> The amount of candy you currently have the the amount you'll have after confirmation</span></div>
                 </Typography>
-
                 <Typography paragraph>
                     Submitting a number will update this menu to reflect the changes. Typing "confirm" will finalize the action updating
                     your Pokemons level and taking the requires candy.

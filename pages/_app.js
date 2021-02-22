@@ -20,7 +20,7 @@ const theme = createMuiTheme({
         }
     },
     content: {
-        [breakpoints.up('sm')]: {
+        [breakpoints.up('md')]: {
             paddingLeft: 250
         },
         flexGrow: 1,

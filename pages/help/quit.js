@@ -20,11 +20,16 @@ export default function QuitHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Quit</h1>
-                <p>Usage: !quit</p>
-                <p>Description: Allows you to quit a menu. If you're ever stuck, quit will allow you to exit whatever menu you are in.
-                    You can check what menu you are in with the info command.
-                </p>
+                <Typography variant='h2' className={classes.center}>
+                    Quit
+                </Typography>
+                <Typography paragraph>
+                    Usage: !quit
+                </Typography>
+                <Typography paragraph>
+                    Allows you to quit a menu. If you're ever stuck somewhere then quit will allow you to exit whatever menu you are in.
+                    You can always check what menu you are in with the info command.
+                </Typography>
             </main>
 		</div>
 	);

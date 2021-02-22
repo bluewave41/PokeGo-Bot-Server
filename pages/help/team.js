@@ -20,12 +20,15 @@ export default function TeamHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Team</h1>
-                <p>Usage: !team</p>
-                <p>Requirements: Cannot have already joined a team, level 5</p>
-                <p>Description: Allows you to join a team.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Team
+                </Typography>
                 <Typography paragraph>
-                    You can only join one team. Once you've selected a team you'll be unable to change it.
+                    Usage: !team
+                </Typography>
+                <Typography paragraph>
+                    At level 5 you will receive mail stating you can now join a team. You can only join a team if you don't already
+                    belong to a team. You'll be unable to change your team once you've selected one.
                 </Typography>
             </main>
 		</div>

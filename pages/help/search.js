@@ -26,9 +26,15 @@ export default function SearchHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Search</h1>
-                <p>Usage: !search</p>
-                <p>Description: Displays a list of Pokemon, Pokestops and Team Rocket grunts in the area.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Search
+                </Typography>
+                <Typography paragraph>
+                    Usage: !search
+                </Typography>
+                <Typography paragraph>
+                    Displays a list of Pokemon, Pokestops, Gyms and Team Rocket grunts in the area.
+                </Typography>
                 <Typography paragraph>
                     Pokemon populate each square that contains land on the map. Pokemon rotate out every 30 minutes and exist for everyone.
                     If you find a rare Pokemon you can share the location with your friends or even withhold it for yourself.

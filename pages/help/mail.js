@@ -20,9 +20,15 @@ export default function MailHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Mail</h1>
-                <p>Usage: !mail</p>
-                <p>Description: Opens the mail menu allowing you to manage your mail.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Mail
+                </Typography>
+                <Typography paragraph>
+                    Usage: !mail
+                </Typography>
+                <Typography paragraph>
+                    Opens the mail menu allowing you to manage your mail.
+                </Typography>
                 <Typography paragraph>
                     Mail will be received when you level up. Mail will contain your rewards for reaching a new level and at
                     level 5 you will receive a message informing you that you can now join a team.

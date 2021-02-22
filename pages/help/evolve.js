@@ -20,12 +20,16 @@ export default function EvolveHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Evolve</h1>
-                <p>Usage: !evolve (pokemonId)</p>
-                <p>Example: !evolve 97</p>
-                <p>Description: Allows you to evolve a Pokemon. You must have enough candy for the Pokemon you're trying to evolve for this
-                    to be successful.
-                </p>
+                <Typography variant='h2' className={classes.center}>
+                    Evolve
+                </Typography>
+                <Typography paragraph>
+                    Usage: !evolve (pokemonId)
+                </Typography>
+                <Typography paragraph>
+                    Allows you to evolve a Pokemon. You must have enough candy for the Pokemon you're trying to evolve for this to
+                    be successful. You can view the amount of candy you have and the amount required with the !display command.
+                </Typography>
             </main>
 		</div>
 	);

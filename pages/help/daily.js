@@ -1,5 +1,6 @@
 import '@fontsource/roboto'
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,10 +20,18 @@ export default function DailyHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Daily</h1>
-                <p>Usage: !daily</p>
-                <p>Restrictions: once every 24 hours</p>
-                <p>Description: Awards coins and a travel ticket upon use.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Daily
+                </Typography>
+                <Typography paragraph>
+                    Usage: !daily
+                </Typography>
+                <Typography paragraph>
+                    Can only be used one every 24 hours.
+                </Typography>
+                <Typography paragraph>
+                    Awards coins and a travel ticket upon use.
+                </Typography>
             </main>
 		</div>
 	);

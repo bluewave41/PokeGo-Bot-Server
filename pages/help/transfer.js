@@ -20,10 +20,15 @@ export default function TransferHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Transfer</h1>
-                <p>Usage: !transfer (pokemonId)</p>
-                <p>Example: !transfer 97</p>
-                <p>Description: Allows you to transfer a Pokemon.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Transfer
+                </Typography>
+                <Typography paragraph>
+                    Usage: !transfer (pokemonId)
+                </Typography>
+                <Typography paragraph>
+                    Allows you to transfer a Pokemon.
+                </Typography>
                 <Typography paragraph>
                     Transferring a Pokemon will bring up a menu requiring you to confirm the transfer. You can confirm a transfer with either
                     "yes", "y" or "confirm."

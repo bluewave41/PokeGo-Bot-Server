@@ -20,9 +20,15 @@ export default function RedeemHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Redeem</h1>
-                <p>Usage: !redeem (code)</p>
-                <p>Description: Allows you to redeem a code giving you items or special Pokemon.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Redeem
+                </Typography>
+                <Typography paragraph>
+                    Usage: !redeem (code)
+                </Typography>
+                <Typography paragraph>
+                    Allows you to reeem a code giving you items or special Pokemon.
+                </Typography>
             </main>
 		</div>
 	);

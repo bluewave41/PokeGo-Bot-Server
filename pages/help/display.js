@@ -1,5 +1,6 @@
 import '@fontsource/roboto'
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,11 +20,18 @@ export default function DisplayHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Display</h1>
-                <p>Usage: !display (pokemonId)</p>
-                <p>Example: !display 97</p>
-                <p>Aliases: display, d</p>
-                <p>Description: Displays information about the selected Pokemon. You can only display Pokemon that you own.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Display
+                </Typography>
+                <Typography paragraph>
+                    Usage: !display (pokemonId)
+                </Typography>
+                <Typography paragraph>
+                    Aliases: display, d
+                </Typography>
+                <Typography paragraph>
+                    Displays various Pokemon attibutes. You can only display Pokemon that you own.
+                </Typography>
             </main>
 		</div>
 	);

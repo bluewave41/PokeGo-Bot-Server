@@ -20,9 +20,15 @@ export default function NewsHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>News</h1>
-                <p>Usage: !news</p>
-                <p>Description: Displays a list of news articles.</p>
+                <Typography variant='h2' className={classes.center}>
+                    News
+                </Typography>
+                <Typography paragraph>
+                    Usage: !news
+                </Typography>
+                <Typography paragraph>
+                    Displays a list of news articles.
+                </Typography>
                 <Typography paragraph>
                     News articles detail events and changes to bot behavior. You can read a news article by doing !news and then sending
                     the ID of the article you wish to read.

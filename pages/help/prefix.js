@@ -19,12 +19,16 @@ export default function PrefixHelpPage(props) {
             <div className={classes.toolbar} />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1 className={classes.center}>Prefix</h1>
-                <p>Usage: !prefix (prefix)</p>
-                <p>Example: !prefix p!</p>
-                <p>Limit: 3 characters</p>
-                <p>Requirements: Manage guild permissions</p>
-                <p>Description: Changes the bots prefix in a server to the given prefix.</p>
+                <Typography variant='h2' className={classes.center}>
+                    Prefix
+                </Typography>
+                <Typography paragraph>
+                    Usage: !prefix (prefix)
+                </Typography>
+                <Typography paragraph>
+                    Changes the bots prefix in a server. This requires the manage guild permission. Prefixes can be a maximum of 3
+                    characters long. Should you ever forget the bots prefix you can mention the bot to learn what it is.
+                </Typography>
             </main>
 		</div>
 	);
