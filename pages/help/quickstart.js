@@ -12,10 +12,12 @@ import List from './quickstart/list';
 import Search from './quickstart/search';
 import Catching from './quickstart/catching';
 import End from './quickstart/end';
+import Travel from './quickstart/travel';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        marginRight: '50px',
     },
     stickyFooter: {
         width: '100%',
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         "& > *": {
             color: 'white',
         },
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             marginLeft: `${theme.drawerWidth}px`,
             width: `calc(100% - ${theme.drawerWidth}px)`,
         },
@@ -48,6 +50,7 @@ export default function QuickstartPage(props) {
         <List />,
         <Search />,
         <Catching />,
+        <Travel />,
         <End />,
     ]
 

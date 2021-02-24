@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
         "& > *": {
             color: 'white',
         },
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             marginLeft: `${theme.drawerWidth}px`,
             width: `calc(100% - ${theme.drawerWidth}px)`,
         },
     },
     snackbarMargin: {
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             marginLeft: `${theme.drawerWidth/2}px`,
         },
     },
