@@ -13,7 +13,7 @@ console.log(process.env.NODE_ENV);
 
 const httpsOptions = {
 	key: fs.readFileSync(`${process.env.CERTIFICATES}/privkey.pem`),
-    cert: fs.readFileSync(`${process.env.CERTIFICATES}/cacert.pem`)
+    cert: fs.readFileSync(`${process.env.CERTIFICATES}/cert.pem`)
 };
 
 app.prepare().then(() => {
