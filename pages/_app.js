@@ -50,6 +50,7 @@ function MyApp({ Component, pageProps, user }) {
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
+	const { req, res } = ctx;
     /*CLIENT*/
     if(typeof window !== 'undefined') {
         return {
@@ -59,9 +60,9 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
             }
         }
     }
-    await applySession(ctx.req, ctx.res);
+    await applySession(req, res);
 
-    if(!ctx.req.session.hasOwnProperty('user')) {
+    if(!req.session.hasOwnProperty('user')) {
         return {
             user: {
                 avatar: null,
@@ -77,7 +78,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     return {
         user: {
             avatar: `https://cdn.discordapp.com/avatars/${ctx.req.session.user.id}/${ctx.req.session.user.avatar}`,
-            username: ctx.req.session.user.username,
+            username: req.session.user.username,
             initial: true,
         },
         pageProps
