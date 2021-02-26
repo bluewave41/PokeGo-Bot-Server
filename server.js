@@ -11,9 +11,9 @@ const handle = app.getRequestHandler();
 
 console.log(process.env.NODE_ENV);
 
-const httpsOptions = {  
-    key: fs.readFileSync('./certificates/privkey.pem'),
-    cert: fs.readFileSync('./certificates/cacert.pem')
+const httpsOptions = {
+	key: fs.readFileSync(`${process.env.CERTIFICATES}/privkey.pem`),
+    cert: fs.readFileSync(`${process.env.CERTIFICATES}/cacert.pem`)
 };
 
 app.prepare().then(() => {
