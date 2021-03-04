@@ -41,11 +41,13 @@ export default async function handler(req, res) {
         res.json({error: Errors.getError(err, 'site')});
         return res.end();
     }
+
+    let selectedPokemon = await PokemonCommands.getAllPokemon(userId);
 	
 	const changed = await Pokemon.query().delete()
         .whereIn('pokemonId', selected);
 
-    const selectedPokemon = (await PokemonCommands.getAllPokemon(userId)).filter(el => selected.includes(el.pokemonId));
+    selectedPokemon = selectedPokemon.filter(el => selected.includes(el.pokemonId));
         		
     /*Give candy
       Can't do them all in 1 query because they have different where conditions
