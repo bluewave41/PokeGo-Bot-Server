@@ -36,12 +36,45 @@ const useStyles = makeStyles({
 	favorite: {
 		position: 'absolute',
 		color: 'yellow',
-	}
+	},
+    zeroStar: {
+        color: 'red'
+    },
+    oneStar: {
+        color: 'orange'
+    },
+    twoStar: {
+        color: 'yellow'
+    },
+    threeStar: {
+        color: 'green'
+    },
+    fourStar: {
+        color: 'blue'
+    }
 });
 
 export default function PokemonCard(props) {
 	const classes = useStyles();
 	const [id, setId] = useState(props.pokemon.pokemonId);
+
+    let color;
+
+    if(props.pokemon.totaliv <= 48.9) {
+        color = 'zeroStar';
+    }
+    else if(props.pokemon.totaliv <= 64.4) {
+        color = 'oneStar';
+    }
+    else if(props.pokemon.totaliv <= 80) {
+        color = 'twoStar';
+    }
+    else if(props.pokemon.totaliv <= 97.8) {
+        color = 'threeStar';
+    }
+    else {
+        color = 'fourStar';
+    }
 	  
 	function onClick() {
 		props.onAdd(id);
@@ -63,7 +96,7 @@ export default function PokemonCard(props) {
 					title={props.pokemon.name}
 				/>
 				<CardContent className={classes.content}>
-					<Typography variant="h5" component="h2">
+					<Typography variant="h5" component="h2" className={classes[color]}>
 						{props.pokemon.name}
 					</Typography>
 				</CardContent>

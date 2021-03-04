@@ -30,6 +30,7 @@ export async function getServerSideProps({ req, res }) {
 		.where('ownerId', req.session.user.userId);
 
 	pokemon = pokemon.map(el => el.toJSON());
+    
 	return {
 		props: {
 			pokemon: pokemon,
