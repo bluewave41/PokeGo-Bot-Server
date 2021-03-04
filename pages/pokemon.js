@@ -1,12 +1,25 @@
 import '@fontsource/roboto'
 import { applySession } from 'next-session';
 import PokemonList from '../components/PokemonList';
+import { makeStyles } from '@material-ui/core/styles';
 const Pokemon = require('~/knex/models/Pokemon');
 
+const useStyles = makeStyles((theme) => ({
+    content: {
+        ...theme.content,
+        paddingBottom: '75px',
+    },
+    toolbar: theme.mixins.toolbar,
+}));
+
 export default function Home(props) {
+    const classes = useStyles();
 	return (
-		<div>
-			<PokemonList pokemon={props.pokemon}/>
+		<div className={classes.root}>
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+			    <PokemonList pokemon={props.pokemon}/>
+            </main>
 		</div>
 	);
 }

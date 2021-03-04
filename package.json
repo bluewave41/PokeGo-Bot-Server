@@ -28,7 +28,8 @@
     "react-dom": "17.0.1",
     "sharp": "^0.27.0",
     "styled-components": "^5.2.1",
-    "text-to-svg": "^3.1.5"
+    "text-to-svg": "^3.1.5",
+    "use-debounce": "^5.2.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"
