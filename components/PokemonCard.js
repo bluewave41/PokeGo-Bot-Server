@@ -87,7 +87,7 @@ export default function PokemonCard(props) {
 				<CardHeader
 					className={classes.title}
 					title={`CP: ${props.pokemon.cp}`}
-					action={props.pokemon.active ? <AddIcon color='secondary' onClick={onClick}/> : <AddIcon onClick={onClick}/>}
+					action={props.active ? <AddIcon color='secondary' onClick={onClick}/> : <AddIcon onClick={onClick}/>}
 				/>
 				<CardMedia
 					className={classes.media}

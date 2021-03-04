@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
             color: 'white',
         },
         [theme.breakpoints.up('md')]: {
-            marginLeft: `${theme.drawerWidth}px`,
+            marginLeft: '-10px',
             width: `calc(100% - ${theme.drawerWidth}px)`,
         },
     },
