@@ -70,6 +70,9 @@ export default function PokemonList(props) {
         if(options.shiny) {
             pokemonToShow = pokemonToShow.concat(pokemon.filter(el => el.shiny));
         }
+        if(options.favorite) {
+            pokemonToShow = pokemonToShow.concat(pokemon.filter(el => el.favorite));
+        }
         if(options.shadow) {
             pokemonToShow = pokemonToShow.concat(pokemon.filter(el => el.shadow));
         }
