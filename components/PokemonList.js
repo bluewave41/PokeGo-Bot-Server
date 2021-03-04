@@ -61,7 +61,6 @@ export default function PokemonList(props) {
     const [canTransfer, setCanTransfer] = useState(true);
 
     const filterList = (options) => {
-        console.log(options)
         let pokemonToShow = [];
         if(options.showAll) {
             setFilteredPokemon(pokemon);
@@ -156,13 +155,13 @@ export default function PokemonList(props) {
                                     if (response.status == 200) {
                                         setMessage(response.data.changed + ' Pokemon favorited!');
                                         setShowSuccess(true);
-                                        let copy = [...pokemon];
+                                        let copy = [...filteredPokemon];
                                         for (var i = 0; i < copy.length; i++) {
                                             if (selected.includes(copy[i].pokemonId)) {
                                                 copy[i].favorite = !copy[i].favorite;
                                             }
                                         }
-                                        setPokemon(copy);
+                                        setFilteredPokemon(copy);
                                         setSelected([]);
                                     }
                                 });
@@ -172,7 +171,7 @@ export default function PokemonList(props) {
                                     if (response.status == 200) {
                                         setMessage(response.data.changed + ' Pokemon transfered!');
                                         setShowSuccess(true);
-                                        setPokemon(pokemon.filter(el => !selected.includes(el.pokemonId)));
+                                        setFilteredPokemon(filteredPokemon.filter(el => !selected.includes(el.pokemonId)));
                                         setSelected([]);
                                     }
                                 });
