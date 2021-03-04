@@ -51,11 +51,9 @@ export default async function handler(req, res) {
       Can't do them all in 1 query because they have different where conditions
     */
     for(var i=0;i<selectedPokemon.length;i++) {
-        await Candy.query().update({
-            amount: raw('amount + 1')
-        })
-        .where('userId', userId)
-        .where('candyID', selectedPokemon[i].candyId)
+        await Candy.query().increment('amount', 1)
+            .where('userId', userId)
+            .where('candyID', selectedPokemon[i].candyId)
     }
 
     res.json({ changed: changed });
