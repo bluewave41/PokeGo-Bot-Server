@@ -12,14 +12,14 @@ import StarIcon from '@material-ui/icons/Star';
 
 const useStyles = makeStyles({
 	root: {
-		minWidth: 150,
+		minWidth: 125,
 		display: 'inline-block',
 		margin: '7px',
 		backgroundColor: '#3e3636',
 		color: 'white',
 	},
 	title: {
-		fontSize: 14,
+		fontSize: '20px',
 		textAlign: 'center',
 	},
 	pos: {
@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 	},
 	content: {
 		textAlign: 'center',
+        padding: 0
 	},
 	favorite: {
 		position: 'absolute',
@@ -85,7 +86,9 @@ export default function PokemonCard(props) {
 			<Card className={classes.root}>
 				{props.pokemon.favorite ? <StarIcon className={classes.favorite}/> : null}
 				<CardHeader
-					className={classes.title}
+                    classes={{
+                        title: classes.title
+                    }}
 					title={`CP: ${props.pokemon.cp}`}
 					action={props.active ? <AddIcon color='secondary' onClick={onClick}/> : <AddIcon onClick={onClick}/>}
 				/>
