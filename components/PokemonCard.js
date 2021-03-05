@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 		color: 'white',
 	},
 	title: {
-		fontSize: '20px',
+		fontSize: '18px',
 		textAlign: 'center',
 	},
 	pos: {
@@ -99,7 +99,7 @@ export default function PokemonCard(props) {
 					title={props.pokemon.name}
 				/>
 				<CardContent className={classes.content}>
-					<Typography variant="h5" component="h2" className={classes[color]}>
+					<Typography variant="h6" component="h2" className={classes[color]}>
 						{props.pokemon.name}
 					</Typography>
 				</CardContent>

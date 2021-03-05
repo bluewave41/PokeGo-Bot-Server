@@ -30,7 +30,7 @@ export default function NicknameHelpPage(props) {
                     Aliases: nickname, nick
                 </Typography>
                 <Typography paragraph>
-                    Changes a Pokemon's name to a nickname. Nicknames are limited to 20 characters and can only contain A-Z and 0-9.
+                    Changes a Pokemon's name to a nickname. Nicknames are limited to 12 characters and can only contain A-Z and 0-9.
                     No special symbols.
                 </Typography>
             </main>
